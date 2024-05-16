@@ -17,3 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+/public/phpstorm_debug.php
+/public/phpstorm_debug_validator.phar
+/public/phpstorm_index.php
