@@ -53,9 +53,9 @@ new class extends Component {
 
                         <div class="flex items-end justify-between mt-4 space-x-1">
                             <p class="text-xs">Recipient: <span class="font=semibold">{{$note->recipient}}</span></p>
-                            <div>
+                            <div class="flex items-center">
                                 <x-button.circle icon="eye"></x-button.circle>
-                                <x-button.circle icon="trash" wire:click="delete('{{$note->id}}')"></x-button.circle>
+                                <x-button.circle icon="trash" wire:click="delete('{{$note->id}}')" class="ml-1"></x-button.circle>
                             </div>
                         </div>
                     </x-card>
