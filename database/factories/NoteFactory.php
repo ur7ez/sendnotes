@@ -21,10 +21,10 @@ class NoteFactory extends Factory
         return [
             'id' => fake()->uuid,
             'user_id' => User::factory(),
-            'title' => fake()->sentence,
+            'title' => fake()->words(5, true),
             'body' => fake()->paragraph,
             'recipient' => fake()->email,
-            'send_date' => fake()->dateTimeBetween('now', '+15 days'),
+            'send_date' => fake()->dateTimeBetween('now', '+15 days')->format('Y-m-d'),
             'is_published' => true,
             'heart_count' => fake()->numberBetween(0, 20),
         ];

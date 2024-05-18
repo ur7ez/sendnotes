@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@php use Illuminate\Support\Facades\Auth; @endphp
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -25,7 +26,11 @@
             <x-application-logo class="h-24 w-auto fill-current text-primary"/>
         </div>
         <div class="mt-5">
-            <x-button primary xl href="{{route('register')}}">Get Started</x-button>
+            @if(Auth::check())
+                <x-button primary xl href="{{route('notes.index')}}">Get Started</x-button>
+            @else
+                <x-button primary xl href="{{route('register')}}">Get Started</x-button>
+            @endif
         </div>
     </div>
 </div>
