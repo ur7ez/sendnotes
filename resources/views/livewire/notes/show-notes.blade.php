@@ -55,8 +55,12 @@ new class extends Component {
                     <x-card wire:key="{{$note->id}}" class="flex justify-between flex-col h-100">
                         <div class="flex justify-between">
                             <div>
-                                <a href="{{ route('notes.edit', $note) }}" wire:navigate
-                                   class="text-xl font-bold hover:underline hover:text-blue-500">{{ Str::limit($note->title, 50) }}</a>
+                                @can('update', $note)
+                                    <a href="{{ route('notes.edit', $note) }}" wire:navigate
+                                       class="text-xl font-bold hover:underline hover:text-blue-500">{{ Str::limit($note->title, 50) }}</a>
+                                @else
+                                    <p class="text-xl font-bold text-gray-500">{{ Str::limit($note->title, 50) }}</p>
+                                @endcan
                             </div>
                             <div class="text-xs text-gray-500 ml-2">
                                 {{$note->send_date->format('d.M.Y')}}
@@ -68,9 +72,11 @@ new class extends Component {
                             <p class="text-xs">Recipient: <span class="font=semibold">{{$note->recipient}}</span></p>
                             <div class="flex items-center">
                                 @if(($note->is_published))
-                                    <x-button.circle icon="eye" wire:navigate href="{{ route('notes.view', $note) }}"></x-button.circle>
+                                    <x-button.circle icon="eye" wire:navigate
+                                                     href="{{ route('notes.view', $note) }}"></x-button.circle>
                                 @endif
-                                <x-button.circle icon="trash" wire:click="delete('{{$note->id}}')" class="ml-1"></x-button.circle>
+                                <x-button.circle icon="trash" wire:click="delete('{{$note->id}}')"
+                                                 class="ml-1"></x-button.circle>
                             </div>
                         </div>
                     </x-card>
